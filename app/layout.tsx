@@ -12,8 +12,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja">
       <body style={{ margin: 0, overflowX: 'hidden' }}>
         <ClickSparkle />
-        
-// app/layout.tsx (header部分のみ抜粋して修正)
         <header style={{
           position: 'fixed', top: '10px', left: '0', right: '0',
           display: 'flex', justifyContent: 'center', zIndex: 100
