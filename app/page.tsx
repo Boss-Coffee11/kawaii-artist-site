@@ -21,7 +21,7 @@ const newRelease = {
   title: "In my Dream",
   year: "2025",
   jacketImage: "/Images/InMyDream.jpg",
-  text: "2025年秋M3新譜。ゲストボーカルを多数迎えた、夢の中にいるような全11曲のフルアルバム。",
+  text: "2025年秋M3新譜。ゲストボーカルを多数迎えて制作した、全11曲（うち新曲1曲）のフルアルバム。",
   tag: "Album",
   booth: "https://etoilefleur.booth.pm/items/7488504"
 };
@@ -65,10 +65,14 @@ export default function Home() {
         <div className="heroVisual reveal delay1">
           <div className="portraitCard">
             <div className="portraitInner" style={{
-              backgroundImage: `url(${profile.mainVisual})`,
-              backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#ffd1dc'
+             backgroundImage: `url(${profile.mainVisual})`,
+             backgroundSize: 'cover',
+             backgroundPosition: 'center',
+             backgroundColor: '#ffd1dc',
+             boxShadow: '0 0 20px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.5)', // 内外に光を追加
+             border: '5px solid #fff' // 白枠で縁取りしてイラストを強調
             }}>
-              <span className="ribbon">♡</span>
+              <span className="ribbon" style={{ fontSize: '1.5rem', filter: 'drop-shadow(0 0 5px white)' }}>♡</span>
             </div>
             <p>main visual</p>
           </div>

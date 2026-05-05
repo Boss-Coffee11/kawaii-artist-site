@@ -15,9 +15,9 @@ const unitInfo = {
   xUrl: "https://x.com/kmn_Bears",
   ytUrl: "https://www.youtube.com/channel/UCxqh2YS5C1rOZ585ep61b1A",
   members: [
-    { name: "鈴咲のの", xId: "@_suzukinono" },
-    { name: "久野兎", xId: "@poqu_" },
-    { name: "まりも", xId: "@nico25_song" },
+    { name: "鈴咲のの", xId: "@_suzukinono", icon: "/Images/nono_icon.jpg" },
+    { name: "久野兎", xId: "@poqu_", icon: "/Images/kuno_icon.jpg" },
+    { name: "まりも", xId: "", icon: "/Images/marimo_icon.jpg" },
   ]
 };
 
@@ -72,31 +72,42 @@ export default function ProfilePage() {
       </section>
 
       {/* --- くまのこべあーず紹介 --- */}
-      <section style={{
-        backgroundColor: 'rgba(230, 247, 255, 0.6)', backdropFilter: 'blur(12px)',
-        borderRadius: '30px', padding: '30px', marginBottom: '40px', border: '2px solid #b2ebf2'
-      }}>
-        <h2 style={{ color: '#00acc1', fontSize: '1.4rem', marginBottom: '10px', textAlign: 'center' }}>🧸 {unitInfo.name}</h2>
-        
-        {/* ユニット公式リンクボタン */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '20px' }}>
-          <a href={unitInfo.xUrl} target="_blank" rel="noreferrer" style={{ fontSize: '0.8rem', color: '#555', textDecoration: 'none', backgroundColor: '#fff', padding: '5px 15px', borderRadius: '15px', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}>𝕏 Official</a>
-          <a href={unitInfo.ytUrl} target="_blank" rel="noreferrer" style={{ fontSize: '0.8rem', color: '#555', textDecoration: 'none', backgroundColor: '#fff', padding: '5px 15px', borderRadius: '15px', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}>YouTube</a>
-        </div>
+<section className="unitSection" style={{
+  backdropFilter: 'blur(12px)', borderRadius: '30px', padding: '30px', marginBottom: '40px'
+}}>
+  <h2 style={{ color: '#00acc1', fontSize: '1.6rem', marginBottom: '10px', textAlign: 'center' }}>
+    🧸 {unitInfo.name} 🧸
+  </h2>
+  
+  {/* ユニット公式リンク */}
+  <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '20px' }}>
+    <a href={unitInfo.xUrl} target="_blank" rel="noreferrer" className="button ghost" style={{ fontSize: '0.8rem', padding: '8px 15px' }}>𝕏 Official</a>
+    <a href={unitInfo.ytUrl} target="_blank" rel="noreferrer" className="button ghost" style={{ fontSize: '0.8rem', padding: '8px 15px' }}>YouTube</a>
+  </div>
 
-        <p style={{ color: '#555', fontSize: '0.9rem', lineHeight: '1.7', textAlign: 'center', marginBottom: '20px' }}>
-          {unitInfo.description}
-        </p>
-        
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-          {unitInfo.members.map(m => (
-            <div key={m.name} style={{ backgroundColor: 'white', padding: '10px 20px', borderRadius: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <span style={{ fontWeight: 'bold', color: '#333', fontSize: '0.85rem', marginBottom: '2px' }}>{m.name}</span>
-              <a href={`https://x.com/${m.xId.replace('@','')}`} target="_blank" rel="noreferrer" style={{ color: '#00acee', textDecoration: 'none', fontSize: '0.75rem' }}>{m.xId}</a>
-            </div>
-          ))}
+  <p style={{ color: '#555', fontSize: '0.95rem', textAlign: 'center', marginBottom: '25px', fontWeight: '500' }}>
+    {unitInfo.description}
+  </p>
+  
+  <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
+    {unitInfo.members.map(m => (
+      <div key={m.name} className="unitMemberCard" style={{ 
+        backgroundColor: 'rgba(255,255,255,0.8)', padding: '12px 20px', borderRadius: '20px',
+        display: 'flex', alignItems: 'center', gap: '12px'
+      }}>
+        {/* メンバーアイコンを表示（画像がない場合はグレーの円） */}
+        <div style={{ 
+          width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#eee',
+          backgroundImage: `url(${m.icon})`, backgroundSize: 'cover'
+        }} />
+        <div style={{ textAlign: 'left' }}>
+          <div style={{ fontWeight: 'bold', color: '#333', fontSize: '0.9rem' }}>{m.name}</div>
+          <a href={`https://x.com/${m.xId.replace('@','')}`} target="_blank" rel="noreferrer" style={{ color: '#00acee', fontSize: '0.75rem' }}>{m.xId}</a>
         </div>
-      </section>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* --- 活動歴 (History) --- */}
       <section style={{ padding: '0 20px' }}>
