@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
              display: 'flex', gap: '20px', fontSize: '0.9rem' 
               }}>
              <Link href="/profile" style={{ color: '#888', textDecoration: 'none' }}>Profile</Link>
-             <Link href="/discography" style={{ color: '#888', textDecoration: 'none' }}>Disco</Link>
+             <Link href="/discography" style={{ color: '#888', textDecoration: 'none' }}>Discography</Link>
              <Link href="/goods" style={{ color: '#888', textDecoration: 'none' }}>Goods</Link>
             </nav>
           </div>
