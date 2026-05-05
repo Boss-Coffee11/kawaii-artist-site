@@ -459,3 +459,24 @@ h1 {
   .heroButtons { flex-direction: column; }
   .button { width: 100%; }
 }
+
+/* 画面幅が640px以上のとき（PC・タブレットなど）の設定 */
+@media (min-width: 640px) {
+  .nav-container {
+    flex-direction: row !important; /* 横並びに強制 */
+    justify-content: space-between !important;
+    padding: 15px 40px !important;
+    border-radius: 50px !important;
+  }
+}
+
+/* メインコンテンツの余白調整（ヘッダーが2段になったとき用） */
+main {
+  padding-top: 140px; /* スマホでの重なりを防ぐために少し広めに */
+}
+
+@media (min-width: 640px) {
+  main {
+    padding-top: 120px;
+  }
+}
