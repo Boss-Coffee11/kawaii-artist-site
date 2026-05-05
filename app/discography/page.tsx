@@ -112,7 +112,7 @@ export default function DiscographyPage() {
             <a href={work.booth} target="_blank" rel="noreferrer" style={{
               fontSize: '0.75rem', color: '#3d95ff', textDecoration: 'none', fontWeight: 'bold',
               border: '1px solid #3d95ff', padding: '4px 10px', borderRadius: '10px'
-            }}>BOOTH 🛒</a>
+            }}>BOOTH</a>
           </div>
         ))}
       </div>
