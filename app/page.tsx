@@ -12,7 +12,7 @@ const profile = {
 const snsLinks = [
   { label: "X / Twitter", href: "https://x.com/_suzukinono", color: "#000" },
   { label: "YouTube", href: "https://www.youtube.com/@_suzukinono", color: "#FF0000" },
-  { label: "Twitch", href: "suzukinono6", color: "#9146FF" }, // ★追加
+  { label: "Twitch", href: "https://www.twitch.tv/suzukinono6", color: "#9146FF" }, // ★追加
   { label: "BOOTH", href: "https://etoilefleur.booth.pm/", color: "#3d95ff" },
   { label: "FANBOX", href: "https://nonochan.fanbox.cc/", color: "#fca311" },
 ];
