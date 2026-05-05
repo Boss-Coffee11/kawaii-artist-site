@@ -7,7 +7,7 @@ const newRelease = {
   release: "2025.10.25",
   jacketImage: "/Images/InMyDream.jpg",
   description: "2025年の秋M3で販売したアルバム（全11曲）。ゲストに素敵なボーカリストのみなさんをお迎えしました。",
-  youtubeId: "kqDSSGTud6A",
+  youtubeId: "OKIdrIeujcY",
   boothUrl: "https://etoilefleur.booth.pm/items/7488504", // 実際のURLへ
   guests: [
     { name: "春瀬愛羅", xId: "@haruai_03" },
