@@ -12,12 +12,11 @@ const profile = {
 const snsLinks = [
   { label: "X / Twitter", href: "https://x.com/_suzukinono", color: "#000" },
   { label: "YouTube", href: "https://www.youtube.com/@_suzukinono", color: "#FF0000" },
-  { label: "Twitch", href: "https://www.twitch.tv/suzukinono6", color: "#9146FF" }, // ★追加
+  { label: "Twitch", href: "https://www.twitch.tv/suzukinono6", color: "#9146FF" },
   { label: "BOOTH", href: "https://etoilefleur.booth.pm/", color: "#3d95ff" },
   { label: "FANBOX", href: "https://nonochan.fanbox.cc/", color: "#fca311" },
 ];
 
-// Discographyページと共通のデータ
 const newRelease = {
   title: "In my Dream",
   year: "2025",
@@ -28,9 +27,24 @@ const newRelease = {
 };
 
 const archiveWorks = [
-  { title: "Dreamin' Coordinate", image: "/Images/Dreamin.jpg", tag: "Album" },
-  { title: "おまえら、こ～ゆ～のがスキなんだろ？", image: "/Images/Omaera.jpg", tag: "miniAlbum" },
-  { title: "Baby Blue Eyes", image: "/Images/BBE.jpg", tag: "miniAlbum" },
+  { 
+    title: "Dreamin' Coordinate", 
+    image: "/Images/Dreamin.jpg", 
+    tag: "Album",
+    booth: "https://etoilefleur.booth.pm/items/3372514"
+  },
+  { 
+    title: "おまえら、こ～ゆ～のがスキなんだろ？", 
+    image: "/Images/Omaera.jpg", 
+    tag: "miniAlbum",
+    booth: "https://etoilefleur.booth.pm/items/4348973"
+  },
+  { 
+    title: "Baby Blue Eyes", 
+    image: "/Images/BBE.jpg", 
+    tag: "miniAlbum",
+    booth: "https://etoilefleur.booth.pm/items/4674411"
+  },
 ];
 
 export default function Home() {
@@ -80,7 +94,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 作品紹介（最新のデータ構造を反映） */}
+      {/* 作品紹介 */}
       <section id="discography" className="section reveal">
         <div className="sectionTitle">
           <p>Works</p>
@@ -109,24 +123,42 @@ export default function Home() {
           </div>
         </div>
 
+        {/* アーカイブグリッド */}
         <div className="cardGrid">
           {archiveWorks.map((item) => (
-            <article className="workCard" key={item.title}>
-              <div className="jacket" style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover' }}>
-                <span>{item.tag}</span>
-              </div>
-              <div className="cardBody">
-                <h3>{item.title}</h3>
-              </div>
-            </article>
+            <a 
+              key={item.title} 
+              href={item.booth}
+              target="_blank" 
+              rel="noreferrer" 
+              style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+            >
+              <article className="workCard" style={{ cursor: 'pointer' }}>
+                <div 
+                  className="jacket" 
+                  style={{ 
+                    backgroundImage: `url(${item.image})`, 
+                    backgroundSize: 'cover',
+                    transition: 'transform 0.3s ease'
+                  }} 
+                >
+                  <span>{item.tag}</span>
+                </div>
+                <div className="cardBody">
+                  <h3>{item.title}</h3>
+                  <p style={{ fontSize: '0.8rem', color: '#3d95ff', marginTop: '5px' }}>BOOTHで見る ↗</p>
+                </div>
+              </article>
+            </a>
           ))}
         </div>
+
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
            <a href="/discography" className="button ghost">すべての作品リストを見る</a>
         </div>
       </section>
 
-      {/* SNS（Twitchを追加） */}
+      {/* SNS */}
       <section id="sns" className="section snsSection reveal">
         <div className="sectionTitle">
           <p>Follow / Stream</p>

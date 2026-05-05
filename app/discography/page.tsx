@@ -25,7 +25,7 @@ const newRelease = {
 // --- 2. 過去作（アーカイブ）のデータ ---
 // アルバム5枚、シングル2枚分などをここに追加してください
 const archiveWorks = [
-  { title: "「Dreamin' Coordinate", image: "/Images/Dreamin.jpg", type: "Album", booth: "https://etoilefleur.booth.pm/items/3372514" },
+  { title: "Dreamin' Coordinate", image: "/Images/Dreamin.jpg", type: "Album", booth: "https://etoilefleur.booth.pm/items/3372514" },
   { title: "おまえら、こ～ゆ～のがスキなんだろ？", image: "/Images/Omaera.jpg", type: "miniAlbum", booth: "https://etoilefleur.booth.pm/items/4348973" },
   { title: "Baby Blue Eyes", image: "/Images/BBE.jpg", type: "miniAlbum", booth: "https://etoilefleur.booth.pm/items/4674411" },
   { title: "桜色ピュアメモリー", image: "/Images/Cherry.jpg", type: "miniAlbum", booth: "https://etoilefleur.booth.pm/items/5652634" },
