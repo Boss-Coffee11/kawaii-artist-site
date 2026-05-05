@@ -47,7 +47,7 @@ export default function ProfilePage() {
           overflow: 'hidden',
           border: '4px solid #fff',
           boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-          backgroundImage: 'url(/images/nono.jpg)', // public/imagesの中に画像を入れる
+          backgroundImage: 'url(/Images/nono.jpg)', // public/imagesの中に画像を入れる
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundColor: '#ffd1dc'

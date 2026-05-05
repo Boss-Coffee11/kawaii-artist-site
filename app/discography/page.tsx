@@ -5,7 +5,7 @@ import React from 'react';
 const newRelease = {
   title: "In my Dream",
   release: "2025.10.25",
-  jacketImage: "/images/InMyDream.jpg",
+  jacketImage: "/Images/InMyDream.jpg",
   description: "2025年の秋M3で販売したアルバム（全11曲）。ゲストに素敵なボーカリストのみなさんをお迎えしました。",
   youtubeId: "kqDSSGTud6A",
   boothUrl: "https://etoilefleur.booth.pm/items/7488504", // 実際のURLへ
@@ -25,13 +25,13 @@ const newRelease = {
 // --- 2. 過去作（アーカイブ）のデータ ---
 // アルバム5枚、シングル2枚分などをここに追加してください
 const archiveWorks = [
-  { title: "「Dreamin' Coordinate", image: "/images/Dreamin.jpg", type: "Album", booth: "https://etoilefleur.booth.pm/items/3372514" },
-  { title: "おまえら、こ～ゆ～のがスキなんだろ？", image: "/images/Omaera.jpg", type: "miniAlbum", booth: "https://etoilefleur.booth.pm/items/4348973" },
-  { title: "Baby Blue Eyes", image: "/images/BBE.jpg", type: "miniAlbum", booth: "https://etoilefleur.booth.pm/items/4674411" },
-  { title: "桜色ピュアメモリー", image: "/images/Cherry.jpg", type: "miniAlbum", booth: "https://etoilefleur.booth.pm/items/5652634" },
-  { title: "Ownmirage", image: "/images/Ownmirage.jpg", type: "Album", booth: "https://etoilefleur.booth.pm/items/6179402" },
-  { title: "恋のサイレン♡ハートfeat.雨汰。", image: "/images/heart.jpg", type: "Single", booth: "https://etoilefleur.booth.pm/items/5802272" },
-  { title: "Fuzzy navel", image: "/images/Fuzzy.jpg", type: "Single", booth: "https://etoilefleur.booth.pm/items/6291877" },
+  { title: "「Dreamin' Coordinate", image: "/Images/Dreamin.jpg", type: "Album", booth: "https://etoilefleur.booth.pm/items/3372514" },
+  { title: "おまえら、こ～ゆ～のがスキなんだろ？", image: "/Images/Omaera.jpg", type: "miniAlbum", booth: "https://etoilefleur.booth.pm/items/4348973" },
+  { title: "Baby Blue Eyes", image: "/Images/BBE.jpg", type: "miniAlbum", booth: "https://etoilefleur.booth.pm/items/4674411" },
+  { title: "桜色ピュアメモリー", image: "/Images/Cherry.jpg", type: "miniAlbum", booth: "https://etoilefleur.booth.pm/items/5652634" },
+  { title: "Ownmirage", image: "/Images/Ownmirage.jpg", type: "Album", booth: "https://etoilefleur.booth.pm/items/6179402" },
+  { title: "恋のサイレン♡ハートfeat.雨汰。", image: "/Images/heart.jpg", type: "Single", booth: "https://etoilefleur.booth.pm/items/5802272" },
+  { title: "Fuzzy navel", image: "/Images/Fuzzy.jpg", type: "Single", booth: "https://etoilefleur.booth.pm/items/6291877" },
 ];
 
 export default function DiscographyPage() {

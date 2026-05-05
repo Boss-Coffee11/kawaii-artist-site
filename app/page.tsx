@@ -5,8 +5,8 @@ const profile = {
   name: "鈴咲のの official site",
   catch: "わたしらしく、楽しく輝く音をあなたにお届け",
   bio: "同人音楽アーティスト“鈴咲のの”の活動報告サイトです。同人音楽イベントに参加したり、Twitchでのゲーム配信など、ゆるやかに活動中。",
-  mainVisual: "/images/nono_main.jpg", 
-  iconImage: "/images/nono_icon.jpg",
+  mainVisual: "/Images/nono_main.jpg", 
+  iconImage: "/Images/nono_icon.jpg",
 };
 
 const snsLinks = [
@@ -21,16 +21,16 @@ const snsLinks = [
 const newRelease = {
   title: "In my Dream",
   year: "2025",
-  jacketImage: "/images/InMyDream.jpg",
+  jacketImage: "/Images/InMyDream.jpg",
   text: "2025年秋M3新譜。ゲストボーカルを多数迎えた、夢の中にいるような全11曲のフルアルバム。",
   tag: "Album",
   booth: "https://etoilefleur.booth.pm/items/7488504"
 };
 
 const archiveWorks = [
-  { title: "Dreamin' Coordinate", image: "/images/Dreamin.jpg", tag: "Album" },
-  { title: "おまえら、こ～ゆ～のがスキなんだろ？", image: "/images/Omaera.jpg", tag: "miniAlbum" },
-  { title: "Baby Blue Eyes", image: "/images/BBE.jpg", tag: "miniAlbum" },
+  { title: "Dreamin' Coordinate", image: "/Images/Dreamin.jpg", tag: "Album" },
+  { title: "おまえら、こ～ゆ～のがスキなんだろ？", image: "/Images/Omaera.jpg", tag: "miniAlbum" },
+  { title: "Baby Blue Eyes", image: "/Images/BBE.jpg", tag: "miniAlbum" },
 ];
 
 export default function Home() {
