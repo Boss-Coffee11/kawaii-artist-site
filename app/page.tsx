@@ -4,7 +4,13 @@ import { FadeIn } from "../components/FadeIn";
 
 const profile = {
   name: "鈴咲のの official site",
-  catch: "わたしらしく、楽しく輝く音をあなたにお届け",
+  catch:(
+  <>
+    これからも<br />
+    私らしく輝いて<br />
+    歌いたい
+  </>
+),
   bio: "同人音楽アーティスト“鈴咲のの”の活動報告サイトです。同人音楽イベントに参加したり、Twitchでのゲーム配信など、ゆるやかに活動中。",
   mainVisual: "/Images/nono_main.jpg", 
   iconImage: "/Images/nono_icon.jpg",
@@ -92,8 +98,9 @@ export default function Home() {
             backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#ffd1dc'
           }} />
           <div>
-            <h3>{profile.name}</h3>
-            <p>{profile.bio}</p>
+            <h3>鈴咲のの（すずき のの）</h3>
+            <p>同人アイドルアーティスト。<br />
+              ドジは多いけど優しく見守ってね！</p>
             <a href="/profile" style={{ color: '#ff82b2', fontSize: '0.8rem', textDecoration: 'none', marginTop: '10px', display: 'inline-block' }}>詳細プロフィール・活動歴はこちら →</a>
           </div>
         </div>
@@ -107,6 +114,8 @@ export default function Home() {
         </div>
         
         {/* 新譜ピックアップ */}
+        <section className="newReleaseSection">
+        <span className="newBadge">PICK UP NEW RELEASE</span>
         <div className="workCard puni" style={{ 
           display: 'flex', gap: '30px', flexWrap: 'wrap', 
           backgroundColor: 'rgba(255,255,255,0.4)', padding: '25px', borderRadius: '30px',
@@ -127,8 +136,14 @@ export default function Home() {
             }}>BOOTHでチェック 🛒</a>
           </div>
         </div>
+        </section>
 
         {/* アーカイブグリッド */}
+        <section>
+          <div className="sectionTitle">
+            <p>Archive</p>
+             <h3>過去作はこちら</h3>
+         </div>
         <div className="cardGrid">
           {archiveWorks.map((item, index) => (
             <FadeIn key={item.title} delay={`${index * 0.15}s`}>
@@ -139,7 +154,7 @@ export default function Home() {
                 style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
               >
 
-                <article className="workCard puni" style={{ cursor: 'pointer' }}>
+                <article className="workCard archiveCard puni" style={{ cursor: 'pointer' }}>
                   <div 
                     className="jacket puni"
                     style={{ 
@@ -158,6 +173,7 @@ export default function Home() {
             </FadeIn>
           ))}
         </div>
+        </section>
 
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
            <a href="/discography" className="button ghost">すべての作品リストを見る</a>

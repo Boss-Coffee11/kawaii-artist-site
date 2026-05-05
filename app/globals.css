@@ -30,7 +30,6 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   color: var(--text);
-  font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", system-ui, sans-serif;
   background:
     radial-gradient(circle at 18% 12%, rgba(255, 199, 224, 0.58), transparent 28%),
     radial-gradient(circle at 86% 8%, rgba(174, 232, 255, 0.7), transparent 30%),
@@ -85,7 +84,7 @@ a { color: inherit; text-decoration: none; }
 .section {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 92px 0;
+  padding: 40px 0;
 }
 
 .hero {
@@ -586,25 +585,33 @@ body {
   transform: scale(0.9);
 }
 
-/* スマホ時のみ：作品リストを横スクロールにする */
+/* スマホ時のみ：作品リストを縦に並べる */
 @media (max-width: 640px) {
   .cardGrid {
-    width: calc(100% + 40px); 
-    margin-left: -20px;
-    padding: 10px 20px 30px;
-    overflow-x: auto;
+    /* 横並びを解除して縦並び（1列）にする */
     display: flex !important;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column !important; 
+    gap: 25px; /* カード同士の上下の間隔 */
+    
+    /* はみ出し防止の設定をリセット */
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
+    overflow-x: visible; 
   }
 
   .cardGrid a {
-    flex: 0 0 240px; 
-    scroll-snap-align: center; 
+    /* 1枚のカードを画面幅いっぱいに広げる */
+    flex: none; 
+    width: 100%;
   }
 
-  .cardGrid::-webkit-scrollbar {
-    display: none;
+  /* ジャケット画像の高さをスマホで見やすいサイズに調整 */
+  .jacket {
+    height: 280px; /* 縦並びなので少し高さを出すと綺麗です */
   }
+
+  /* スクロールバー非表示の設定は不要になるので消してもOK */
 }
 
 /* 「ぷにっ」のベース */
@@ -633,4 +640,48 @@ body {
 .fade-up.show {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+/* 新譜カード */
+.newReleaseSection {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 38px;
+  padding: 8px 10px; 
+  margin: 0 auto 40px;
+  border: 2px dashed #ffc7e0;
+  width: fit-content;
+  max-width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.newBadge {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: linear-gradient(135deg, #ff82b2, #ffafcc);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.75rem;
+  box-shadow: 0 4px 10px rgba(255, 130, 178, 0.2);
+  z-index: 20;
+}
+
+.newReleaseSection .workCard {
+  margin: 0 !important;
+}
+
+/* 旧譜カード */
+.archiveCard {
+  transform: scale(0.96);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.archiveCard:hover {
+  transform: scale(1.0) !important;
+  opacity: 1;
 }

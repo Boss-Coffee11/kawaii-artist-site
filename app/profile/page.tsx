@@ -11,7 +11,12 @@ const officialLinks = [
 
 const unitInfo = {
   name: "くまのこべあーず",
-  description: "鈴咲ののも参加しているボーカルユニット。こどもかわいいをテーマに、アニソンちっくな可愛いCDを作ってます！",
+  description: (
+    <>
+      私も参加しているボーカルユニット。<br />
+      こどもかわいいをテーマに、アニソンちっくな可愛いCDを作ってます！
+    </>
+  ),
   xUrl: "https://x.com/kmn_Bears",
   ytUrl: "https://www.youtube.com/channel/UCxqh2YS5C1rOZ585ep61b1A",
   members: [
@@ -57,8 +62,8 @@ export default function ProfilePage() {
         <p style={{ color: '#888', fontSize: '0.9rem', marginBottom: '20px' }}>Nono Suzuki</p>
         
         <p style={{ color: '#666', lineHeight: '1.8', margin: '10px 0' }}>
-          「わたしらしく、楽しく輝く音をあなたにお届け」をモットーに活動する音楽アーティスト。<br />
-          かわいいらしい歌声だけでなく大人かっこいい歌声も表現し、多方面で活動中。
+          「私らしく楽しく」をモットーに同人音楽活動中。<br />
+          かわいいだけでなく大人かっこいい歌声も出せます！
         </p>
 
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '20px' }}>
