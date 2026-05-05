@@ -44,7 +44,7 @@ export default function Home() {
           <p className="lead">{profile.bio}</p>
           <div className="heroButtons">
             <a className="button primary" href="/discography">作品を見る</a>
-            <a className="button ghost" href="https://www.twitch.tv/suzukinono_ch" target="_blank" rel="noreferrer">Twitch配信を見る 🎮</a>
+            <a className="button ghost" href="https://www.twitch.tv/suzukinono6" target="_blank" rel="noreferrer">Twitch配信を見る 🎮</a>
           </div>
         </div>
 
