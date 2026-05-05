@@ -1,7 +1,30 @@
 "use client";
-import React from 'react';
+import React from "react";
 
-// --- 1. リンク・データ設定 ---
+const profile = {
+  name: "鈴咲のの",
+  romaji: "Nono Suzusaki",
+  iconImage: "/Images/nono.jpg",
+  standingImage: "/Images/nono_main.jpg",
+  intro: (
+    <>
+      「私らしく楽しく」をモットーに、同人音楽や配信を中心に活動中。<br />
+      かわいい雰囲気はもちろん、ちょっぴり大人っぽくかっこいい歌声も届けています。
+    </>
+  ),
+};
+
+const profileList = [
+  { label: "誕生日", value: "1月23日" },
+  { label: "趣味", value: "ゲーム、歌、配信、テーブルゲーム" },
+  { label: "ゲーム", value: "Overwatch / ゴッドフィールド など" },
+  { label: "特技", value: "歌MIX、動画制作、料理、誤字" },
+  { label: "好きなもの", value: "かわいいもの、日本酒、おしゃべり" },
+  { label: "活動スタイル", value: "同人音楽、イベント参加、ファンミーティングなど" },
+  { label: "チャームポイント", value: "かわいさも大人っぽさも出せる歌声" },
+  { label: "ひとこと", value: "これからも自分らしく、きらきら楽しく歌っていきます！" },
+];
+
 const officialLinks = [
   { label: "𝕏 (Twitter)", href: "https://x.com/_suzukinono", color: "#000" },
   { label: "YouTube", href: "https://www.youtube.com/@_suzukinono", color: "#FF0000" },
@@ -17,17 +40,15 @@ const unitInfo = {
       こどもかわいいをテーマに、アニソンちっくな可愛いCDを作ってます！
     </>
   ),
-  xUrl: "https://x.com/kmn_Bears",
-  ytUrl: "https://www.youtube.com/channel/UCxqh2YS5C1rOZ585ep61b1A",
   members: [
     { name: "鈴咲のの", xId: "@_suzukinono", icon: "/Images/nono_icon.jpg" },
     { name: "久野兎", xId: "@poqu_", icon: "/Images/kuno_icon.jpg" },
     { name: "まりも", xId: "", icon: "/Images/marimo_icon.jpg" },
-  ]
+  ],
 };
 
 const history = [
-  { date: "2024.04", event: "活動開始。初めてのオリジナル曲をYouTubeに投稿。" }, // ここに活動履歴を入れていく
+  { date: "2024.04", event: "活動開始。初めてのオリジナル曲をYouTubeに投稿。" },
   { date: "2024.10", event: "秋のM3にて1st EP『Cotton Candy Room』をリリース。" },
   { date: "2025.01", event: "ボーカルユニット「くまのこべあーず」に加入。" },
   { date: "2025.10", event: "アルバム『In my Dream』をリリース。" },
@@ -35,103 +56,142 @@ const history = [
 ];
 
 export default function ProfilePage() {
-  return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px' }}>
-      
-      {/* --- メインプロフィール --- */}
-      <section style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(12px)',
-        borderRadius: '30px', padding: '40px', textAlign: 'center',
-        boxShadow: '0 10px 30px rgba(255, 182, 193, 0.2)', marginBottom: '40px'
-      }}>
-        {/* ★ アイコン画像エリア（丸型） */}
-        <div style={{ 
-          width: '120px', height: '120px', 
-          margin: '0 auto 20px', 
-          borderRadius: '50%', 
-          overflow: 'hidden',
-          border: '4px solid #fff',
-          boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-          backgroundImage: 'url(/Images/nono.jpg)', // public/imagesの中に画像を入れる
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundColor: '#ffd1dc'
-        }} />
-        
-        <h1 style={{ color: '#ff69b4', fontSize: '2.2rem', marginBottom: '5px' }}>鈴咲のの</h1>
-        <p style={{ color: '#888', fontSize: '0.9rem', marginBottom: '20px' }}>Nono Suzuki</p>
-        
-        <p style={{ color: '#666', lineHeight: '1.8', margin: '10px 0' }}>
-          「私らしく楽しく」をモットーに同人音楽活動中。<br />
-          かわいいだけでなく大人かっこいい歌声も出せます！
-        </p>
+  const hasStandingImage = Boolean(profile.standingImage);
 
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '20px' }}>
-          {officialLinks.map(link => (
-            <a key={link.label} href={link.href} target="_blank" rel="noreferrer" style={{
-              padding: '10px 18px', borderRadius: '20px', backgroundColor: 'white',
-              color: link.color, fontSize: '0.8rem', fontWeight: 'bold', textDecoration: 'none', boxShadow: '0 4px 10px rgba(0,0,0,0.05)'
-            }}>{link.label}</a>
-          ))}
+  return (
+    <main className="section reveal profilePageWrap" style={{ maxWidth: "980px", margin: "0 auto" }}>
+      <div className="sectionTitle">
+        <p>ABOUT</p>
+        <h2>Profile</h2>
+      </div>
+
+      <section className="glassCard profileHeroCard" style={{ marginBottom: "44px" }}>
+        <div className="profileHeroText">
+          <div className="profileNameBlock">
+            <div
+              className="profileIconLarge"
+              style={{
+                backgroundImage: `url(${profile.iconImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundColor: "#ffd1dc",
+              }}
+            />
+            <div>
+              <p className="profileMiniCatch">Sweet Voice Idol</p>
+              <h3 className="profileMainName">{profile.name}</h3>
+              <p className="profileSubName">{profile.romaji}</p>
+            </div>
+          </div>
+
+          <div className="profileMessageBox">
+            <p className="profileLeadText">{profile.intro}</p>
+
+            <ul className="profileBulletList">
+              {profileList.map((item) => (
+                <li key={item.label} className="profileBulletItem">
+                  <span className="profileBulletLabel">{item.label}</span>
+                  <span className="profileBulletValue">{item.value}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="profileLinksRow">
+            {officialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="profileLinkButton puni"
+                style={{ color: link.color }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="profileStandingArea">
+          <div className="profileStandingCard puni">
+            <span className="profileStandingBadge">standing illust</span>
+
+            {hasStandingImage ? (
+              <div className="profileStandingImageWrap">
+                <img
+                  src={profile.standingImage}
+                  alt={`${profile.name}の立ち絵`}
+                  className="profileStandingImageTag"
+                />
+              </div>
+            ) : (
+              <div className="profileStandingPlaceholder">
+                <span className="profileStandingEmoji">🎀✨</span>
+                <p>ここに立ち絵イラスト</p>
+                <small>
+                  画像を追加したら
+                  <br />
+                  profile.standingImage にパスを入れるだけ
+                </small>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
-      {/* --- くまのこべあーず紹介 --- */}
-<section className="unitSection" style={{
-  backdropFilter: 'blur(12px)', borderRadius: '30px', padding: '30px', marginBottom: '40px'
-}}>
-  <h2 style={{ color: '#00acc1', fontSize: '1.6rem', marginBottom: '10px', textAlign: 'center' }}>
-    🧸 {unitInfo.name} 🧸
-  </h2>
-  
-  {/* ユニット公式リンク */}
-  <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '20px' }}>
-    <a href={unitInfo.xUrl} target="_blank" rel="noreferrer" className="button ghost" style={{ fontSize: '0.8rem', padding: '8px 15px' }}>𝕏 Official</a>
-    <a href={unitInfo.ytUrl} target="_blank" rel="noreferrer" className="button ghost" style={{ fontSize: '0.8rem', padding: '8px 15px' }}>YouTube</a>
-  </div>
+      <section className="unitSection glassCard profileSoftSection" style={{ marginBottom: "44px" }}>
+        <h2 className="profileSectionHeading">🧸 {unitInfo.name} 🧸</h2>
+        <p className="profileSectionLead">{unitInfo.description}</p>
 
-  <p style={{ color: '#555', fontSize: '0.95rem', textAlign: 'center', marginBottom: '25px', fontWeight: '500' }}>
-    {unitInfo.description}
-  </p>
-  
-  <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-    {unitInfo.members.map(m => (
-      <div key={m.name} className="unitMemberCard" style={{ 
-        backgroundColor: 'rgba(255,255,255,0.8)', padding: '12px 20px', borderRadius: '20px',
-        display: 'flex', alignItems: 'center', gap: '12px'
-      }}>
-        {/* メンバーアイコンを表示（画像がない場合はグレーの円） */}
-        <div style={{ 
-          width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#eee',
-          backgroundImage: `url(${m.icon})`, backgroundSize: 'cover'
-        }} />
-        <div style={{ textAlign: 'left' }}>
-          <div style={{ fontWeight: 'bold', color: '#333', fontSize: '0.9rem' }}>{m.name}</div>
-          <a href={`https://x.com/${m.xId.replace('@','')}`} target="_blank" rel="noreferrer" style={{ color: '#00acee', fontSize: '0.75rem' }}>{m.xId}</a>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+        <div className="profileMemberGrid">
+          {unitInfo.members.map((member) => (
+            <div key={member.name} className="unitMemberCard profileMemberCard">
+              <div
+                className="profileMemberIcon"
+                style={{
+                  backgroundImage: `url(${member.icon})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundColor: "#eee",
+                }}
+              />
+              <div style={{ textAlign: "left" }}>
+                <div className="profileMemberName">{member.name}</div>
 
-      {/* --- 活動歴 (History) --- */}
-      <section style={{ padding: '0 20px' }}>
-        <h2 style={{ color: '#ff82b2', textAlign: 'center', marginBottom: '30px' }}>History</h2>
-        <div style={{ position: 'relative', borderLeft: '2px dashed #ffb6c1', paddingLeft: '30px', marginLeft: '20px' }}>
-          {history.map((item, i) => (
-            <div key={i} style={{ marginBottom: '30px', position: 'relative' }}>
-              <span style={{
-                position: 'absolute', left: '-41px', top: '5px',
-                width: '20px', height: '20px', backgroundColor: 'white',
-                border: '3px solid #ffb6c1', borderRadius: '50%'
-              }} />
-              <p style={{ fontWeight: 'bold', color: '#ff82b2', marginBottom: '5px' }}>{item.date}</p>
-              <p style={{ color: '#666', fontSize: '0.95rem' }}>{item.event}</p>
+                {member.xId ? (
+                  <a
+                    href={`https://x.com/${member.xId.replace("@", "")}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="profileMemberLink"
+                  >
+                    {member.xId}
+                  </a>
+                ) : (
+                  <span className="profileMemberLink" style={{ opacity: 0.65 }}>
+                    account preparing...
+                  </span>
+                )}
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-    </div>
+      <section className="glassCard profileSoftSection profileHistorySection">
+        <h2 className="profileSectionHeading">History</h2>
+
+        <div className="profileTimeline">
+          {history.map((item, index) => (
+            <div key={index} className="profileTimelineItem">
+              <span className="profileTimelineDot" />
+              <p className="profileTimelineDate">{item.date}</p>
+              <p className="profileTimelineText">{item.event}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }

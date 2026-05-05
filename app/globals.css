@@ -685,3 +685,397 @@ body {
   transform: scale(1.0) !important;
   opacity: 1;
 }
+
+.profileContent {
+  display: flex;
+  flex-direction: column;
+}
+
+/* スマホで詳細項目が縦に並びすぎないように調整 */
+@media (max-width: 640px) {
+  .profileCard {
+    text-align: center;
+    padding: 30px 20px;
+  }
+  
+  /* 詳細プロフィールを2列にする（お好みで） */
+  .detailGrid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+/* ===== Profile page refresh ===== */
+.profilePageWrap {
+  position: relative;
+}
+
+.profileHeroCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 28px;
+  padding: 30px;
+  border-radius: 36px;
+  align-items: start;
+  background:
+    radial-gradient(circle at top left, rgba(255, 196, 225, 0.42), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(174, 232, 255, 0.38), transparent 32%),
+    rgba(255, 255, 255, 0.72);
+}
+
+.profileHeroText {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.profileNameBlock {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.profileIconLarge {
+  width: 96px;
+  height: 96px;
+  border-radius: 30px;
+  flex-shrink: 0;
+  border: 4px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 30px rgba(255, 167, 205, 0.22);
+}
+
+.profileMiniCatch {
+  margin: 0 0 6px;
+  color: #ef86b9;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.profileMainName {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  color: #ff72ae;
+}
+
+.profileSubName {
+  margin: 6px 0 0;
+  color: #8f93a8;
+  font-size: 0.95rem;
+}
+
+.profileMessageBox {
+  padding: 22px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.65));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.profileLeadText {
+  margin: 0 0 18px;
+  color: #66697c;
+  line-height: 2;
+  font-size: 1rem;
+}
+
+.profileBulletList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.profileBulletItem {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 244, 249, 0.88);
+  border: 1px dashed rgba(255, 167, 205, 0.58);
+}
+
+.profileBulletLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffa3cf, #9de3ff);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.profileBulletValue {
+  color: #5d6073;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  padding-top: 4px;
+}
+
+.profileLinksRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.profileLinkButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 18px rgba(180, 190, 220, 0.16);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.profileStandingArea {
+  align-self: start;
+}
+
+.profileStandingCard {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7) 48%, rgba(255, 235, 245, 0.88) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.64));
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 14px 30px rgba(255, 167, 205, 0.16);
+  overflow: hidden;
+}
+
+.profileStandingCard::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 26px;
+  border: 2px dashed rgba(255, 167, 205, 0.4);
+  pointer-events: none;
+}
+
+.profileStandingBadge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff87b8, #9fdfff);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profileStandingImageWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 16px 12px;
+}
+
+.profileStandingImageTag {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  border-radius: 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 26px rgba(255, 167, 205, 0.22));
+}
+
+.profileStandingPlaceholder {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  color: #8a7e98;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.95), transparent 28%),
+    linear-gradient(180deg, rgba(255, 241, 247, 0.92), rgba(236, 248, 255, 0.92));
+}
+
+.profileStandingPlaceholder p {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ef86b9;
+}
+
+.profileStandingPlaceholder small {
+  line-height: 1.8;
+  color: #8b8ba0;
+}
+
+.profileStandingEmoji {
+  font-size: 2rem;
+}
+
+.profileSoftSection {
+  padding: 30px;
+  border-radius: 34px;
+}
+
+.profileSectionHeading {
+  margin-bottom: 16px;
+  text-align: center;
+  color: #ff82b2;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+}
+
+.profileSectionLead {
+  text-align: center;
+  color: #66697c;
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+
+.profileMemberGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.profileMemberCard {
+  padding: 14px 16px !important;
+  border-radius: 22px !important;
+  box-shadow: 0 8px 20px rgba(0, 172, 193, 0.08);
+}
+
+.profileMemberIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.profileMemberName {
+  font-weight: 800;
+  color: #4f5064;
+  font-size: 0.95rem;
+}
+
+.profileMemberLink {
+  color: #57a6df;
+  font-size: 0.8rem;
+}
+
+.profileHistorySection {
+  background:
+    radial-gradient(circle at top right, rgba(255, 196, 225, 0.28), transparent 28%),
+    rgba(255, 255, 255, 0.72);
+}
+
+.profileTimeline {
+  position: relative;
+  border-left: 2px dashed #ffb6d5;
+  padding-left: 30px;
+  margin-left: 8px;
+}
+
+.profileTimelineItem {
+  position: relative;
+  padding-bottom: 22px;
+}
+
+.profileTimelineDot {
+  position: absolute;
+  left: -41px;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #ffb6d5;
+  box-shadow: 0 0 0 6px rgba(255, 240, 246, 0.85);
+}
+
+.profileTimelineDate {
+  margin-bottom: 8px;
+  color: #ef86b9;
+  font-weight: 800;
+}
+
+.profileTimelineText {
+  margin: 0;
+  color: #66697c;
+  line-height: 1.85;
+}
+
+@media (max-width: 900px) {
+  .profileHeroCard {
+    grid-template-columns: 1fr;
+  }
+
+  .profileStandingImageWrap {
+    padding-top: 52px;
+  }
+
+  .profileStandingImageTag {
+    max-width: 300px;
+  }
+
+  .profileMemberGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .profileHeroCard,
+  .profileSoftSection {
+    padding: 22px;
+  }
+
+  .profileNameBlock {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profileLinksRow {
+    justify-content: center;
+  }
+
+  .profileBulletItem {
+    grid-template-columns: 1fr;
+  }
+
+  .profileBulletLabel {
+    justify-self: start;
+  }
+
+  .profileStandingImageWrap {
+    padding-top: 48px;
+  }
+
+  .profileStandingImageTag {
+    max-width: 260px;
+  }
+
+  .profileTimeline {
+    padding-left: 24px;
+  }
+
+  .profileTimelineDot {
+    left: -35px;
+  }
+}
