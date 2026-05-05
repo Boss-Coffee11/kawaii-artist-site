@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { FadeIn } from "../components/FadeIn";
 
 const profile = {
   name: "鈴咲のの official site",
@@ -57,13 +58,13 @@ export default function Home() {
           <h1>{profile.catch}</h1>
           <p className="lead">{profile.bio}</p>
           <div className="heroButtons">
-            <a className="button primary" href="/discography">作品を見る</a>
-            <a className="button ghost" href="https://www.twitch.tv/suzukinono6" target="_blank" rel="noreferrer">Twitch配信を見る 🎮</a>
+            <a className="button primary puni" href="/discography">作品を見る</a>
+            <a className="button ghost puni" href="https://www.twitch.tv/suzukinono6" target="_blank" rel="noreferrer">Twitch配信を見る 🎮</a>
           </div>
         </div>
 
         <div className="heroVisual reveal delay1">
-          <div className="portraitCard">
+          <div className="portraitCard puni">
             <div className="portraitInner" style={{
              backgroundImage: `url(${profile.mainVisual})`,
              backgroundSize: 'cover',
@@ -106,7 +107,7 @@ export default function Home() {
         </div>
         
         {/* 新譜ピックアップ */}
-        <div className="workCard" style={{ 
+        <div className="workCard puni" style={{ 
           display: 'flex', gap: '30px', flexWrap: 'wrap', 
           backgroundColor: 'rgba(255,255,255,0.4)', padding: '25px', borderRadius: '30px',
           marginBottom: '30px', backdropFilter: 'blur(10px)'
@@ -129,31 +130,32 @@ export default function Home() {
 
         {/* アーカイブグリッド */}
         <div className="cardGrid">
-          {archiveWorks.map((item) => (
-            <a 
-              key={item.title} 
-              href={item.booth}
-              target="_blank" 
-              rel="noreferrer" 
-              style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
-            >
-              <article className="workCard" style={{ cursor: 'pointer' }}>
-                <div 
-                  className="jacket" 
-                  style={{ 
-                    backgroundImage: `url(${item.image})`, 
-                    backgroundSize: 'cover',
-                    transition: 'transform 0.3s ease'
-                  }} 
-                >
-                  <span>{item.tag}</span>
-                </div>
-                <div className="cardBody">
-                  <h3>{item.title}</h3>
-                  <p style={{ fontSize: '0.8rem', color: '#3d95ff', marginTop: '5px' }}>BOOTHで見る ↗</p>
-                </div>
-              </article>
-            </a>
+          {archiveWorks.map((item, index) => (
+            <FadeIn key={item.title} delay={`${index * 0.15}s`}>
+              <a 
+                href={item.booth}
+                target="_blank" 
+                rel="noreferrer" 
+                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+              >
+
+                <article className="workCard puni" style={{ cursor: 'pointer' }}>
+                  <div 
+                    className="jacket puni"
+                    style={{ 
+                      backgroundImage: `url(${item.image})`, 
+                      backgroundSize: 'cover',
+                    }} 
+                  >
+                    <span>{item.tag}</span>
+                  </div>
+                  <div className="cardBody">
+                    <h3>{item.title}</h3>
+                    <p style={{ fontSize: '0.8rem', color: '#3d95ff', marginTop: '5px' }}>BOOTHで見る ↗</p>
+                  </div>
+                </article>
+              </a>
+            </FadeIn>
           ))}
         </div>
 

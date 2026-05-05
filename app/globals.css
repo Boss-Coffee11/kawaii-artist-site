@@ -606,3 +606,31 @@ body {
     display: none;
   }
 }
+
+/* 「ぷにっ」のベース */
+.puni {
+  transition: transform 0.25s cubic-bezier(0.25, 1.5, 0.5, 1) !important;
+  
+  /* ↓ ボヤけ対策 */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  will-change: transform;
+}
+
+.puni:hover {
+  transform: scale(1.08) rotate(1deg) !important;
+  cursor: pointer;
+}
+
+/* 「ふわっ」のベース */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 表示された時 */
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
