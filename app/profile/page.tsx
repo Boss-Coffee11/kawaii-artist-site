@@ -3,7 +3,7 @@ import React from "react";
 
 const profile = {
   name: "鈴咲のの",
-  romaji: "Nono Suzusaki",
+  romaji: "Nono Suzuki",
   iconImage: "/Images/nono.jpg",
   standingImage: "/Images/nono_main.jpg",
   intro: (
@@ -170,7 +170,7 @@ export default function ProfilePage() {
                   </a>
                 ) : (
                   <span className="profileMemberLink" style={{ opacity: 0.65 }}>
-                    account preparing...
+                  
                   </span>
                 )}
               </div>
