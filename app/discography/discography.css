@@ -1,0 +1,262 @@
+/* =========================================================
+   Discography ページ専用の見た目
+   すべて .disco の中だけに効くので、他のページには影響しません
+   ========================================================= */
+/* ===== 現行サイトの色をそのまま継承 ===== */
+.disco{font-family:inherit;color:var(--text);letter-spacing:.03em;line-height:1.8;
+
+  --text:#555568;
+  --muted:#8b8ba0;
+  --head:#4f5064;
+  --pink:#ef86b9;
+  --pink-l:#ffa3cf;
+  --pink-bg:#fff0f7;
+  --blue:#3d95ff;
+  --blue-l:#9de3ff;
+  --blue-bg:#eef9ff;
+  --border:#ffffffb8;
+  --glint:#dff3ff;
+  --tile:200px;
+  --night-a:#141a4a;
+  --night-b:#05071c;
+}
+.disco button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.disco a{color:inherit;text-decoration:none}
+.disco img{display:block;max-width:100%}
+.disco .en{font-family:var(--font-quicksand),sans-serif}
+
+/* 背景の小さな光 */
+.disco .bg-sparkles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.disco .bg-sparkles i{
+  position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.7;
+  box-shadow:0 0 14px #ffc7e0e6,0 0 26px #aee8ffcc;animation:disco-twinkle 4s ease-in-out infinite;
+}
+@keyframes disco-twinkle{0%,100%{opacity:.18;transform:translateY(0) scale(.7)}45%{opacity:.9;transform:translateY(-18px) scale(1.25)}}
+
+/* ===== ページ ===== */
+.disco .page{position:relative;z-index:1;width:min(1120px,calc(100% - 32px));margin:0 auto;padding:8px 0 40px}
+.disco .page-head{text-align:center;margin-bottom:28px}
+.disco .eyebrow{color:var(--pink);letter-spacing:.3em;text-transform:uppercase;font-size:13px;font-weight:700;font-family:var(--font-quicksand),sans-serif}
+.disco .page-head h1{
+  font-family:var(--font-quicksand),sans-serif;font-weight:700;color:var(--head);
+  font-size:clamp(40px,6vw,64px);letter-spacing:.02em;line-height:1.1;
+}
+
+.disco .filters{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 22px;margin-bottom:44px}
+.disco .filter{
+  font-family:var(--font-quicksand),sans-serif;font-weight:700;font-size:15px;color:var(--muted);
+  padding:4px 2px;position:relative;transition:color .2s;
+}
+.disco .filter::after{
+  content:"";position:absolute;left:0;right:0;bottom:-2px;height:3px;border-radius:3px;
+  background:linear-gradient(90deg,var(--pink-l),var(--blue-l));transform:scaleX(0);transition:transform .3s;
+}
+.disco .filter:hover{color:var(--pink)}
+.disco .filter.is-active{color:var(--head)}
+.disco .filter.is-active::after{transform:scaleX(1)}
+
+/* ===== 作品グリッド（ジャケット主役） ===== */
+.disco .works{
+  list-style:none;display:grid;gap:36px 26px;
+  grid-template-columns:repeat(auto-fill,minmax(var(--tile),1fr));
+  grid-auto-flow:dense;
+}
+.disco .work{display:block;width:100%;text-align:left;position:relative}
+.disco .work-jk{
+  position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;background:#f3eaf2;
+  box-shadow:0 12px 30px #a0c8dc33;transition:transform .45s cubic-bezier(.2,1.3,.4,1),box-shadow .35s;
+}
+.disco .work-jk img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.disco .work-jk::after{ /* ホバー時の光の帯（現行サイトの演出を継承） */
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg,#0000 30%,#ffffffb0,#0000 70%);transform:translateX(-120%);transition:transform .8s;
+}
+.disco .work:hover .work-jk,.disco .work:focus-visible .work-jk{transform:translateY(-6px);box-shadow:0 22px 44px #ffa7cd47}
+.disco .work:hover .work-jk img{transform:scale(1.04)}
+.disco .work:hover .work-jk::after{transform:translateX(120%)}
+.disco .work:focus-visible{outline:none}
+.disco .work:focus-visible .work-jk{outline:3px solid var(--pink-l);outline-offset:4px}
+.disco .work-meta{padding:14px 4px 0}
+.disco .work-type{font-family:var(--font-quicksand),sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--pink)}
+.disco .work-title{font-size:15px;font-weight:700;color:var(--head);line-height:1.5;margin-top:2px;text-wrap:pretty}
+.disco .work-date{font-family:var(--font-quicksand),sans-serif;font-size:12px;color:var(--muted);margin-top:2px}
+
+/* 新譜タイル（夜空の小窓） */
+.disco .works.feature-big .work-li.is-new{grid-column:span 2;grid-row:span 2}
+.disco .work.is-new .work-jk{
+  box-shadow:0 0 0 3px #fff,0 0 0 6px #b9d3e6,0 20px 50px #1e2e4866;
+}
+.disco .work.is-new .work-jk::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,#0000 55%,#0a1222d9);
+}
+.disco .new-flag{
+  position:absolute;left:14px;bottom:14px;z-index:2;color:#fff;
+  font-family:var(--font-quicksand),sans-serif;font-weight:700;letter-spacing:.14em;font-size:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.disco .new-flag b{
+  background:#fff;color:#14223a;border-radius:999px;padding:3px 10px;font-size:11px;letter-spacing:.12em;
+}
+.disco .tw{position:absolute;z-index:2;width:16px;aspect-ratio:1;background:#fff;pointer-events:none;
+  clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%);
+  filter:drop-shadow(0 0 6px #fff) drop-shadow(0 0 10px #bfe3f5);
+  animation:disco-tw 2.2s ease-in-out infinite;
+}
+@keyframes disco-tw{0%,100%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+.disco .work.is-new .work-title{font-size:20px}
+.disco .work.is-new .work-type{color:#4a6f92}
+.disco .work-hint{
+  display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:#4a6f92;font-weight:700;
+}
+.disco .work-hint::before{content:"";width:8px;height:8px;background:currentColor;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+
+.disco .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+
+.disco .footer{position:relative;z-index:1;text-align:center;color:var(--muted);padding:40px 16px 56px;font-size:12px;font-family:var(--font-quicksand),sans-serif}
+
+/* ===== 詳細ポップアップ ===== */
+.disco .dlg{position:fixed;inset:0;z-index:3001;display:grid;place-items:center;padding:20px;visibility:hidden}
+.disco .dlg.is-open{visibility:visible}
+.disco .dlg-scrim{position:absolute;inset:0;background:#fdf3f8b3;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .35s}
+.disco .dlg.is-open .dlg-scrim{opacity:1}
+.disco .dlg-card{
+  position:relative;width:min(940px,100%);max-height:calc(100vh - 40px);overflow:auto;
+  background:#fff;border-radius:28px;padding:40px;
+  box-shadow:0 30px 80px #a0a8d040;
+  opacity:0;transform:translateY(24px) scale(.97);transition:opacity .35s,transform .45s cubic-bezier(.2,1.2,.4,1);
+}
+.disco .dlg.is-open .dlg-card{opacity:1;transform:none}
+.disco .dlg-x{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;background:var(--pink-bg);z-index:3;transition:.2s}
+.disco .dlg-x span{position:absolute;left:13px;top:21px;width:18px;height:2px;border-radius:2px;background:var(--pink)}
+.disco .dlg-x span:first-child{transform:rotate(45deg)}
+.disco .dlg-x span:last-child{transform:rotate(-45deg)}
+.disco .dlg-x:hover{transform:rotate(90deg)}
+.disco .dlg-grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:40px;align-items:start}
+.disco .dlg-jacket{background:#f3eaf2;position:sticky;top:0;border-radius:20px;overflow:hidden;aspect-ratio:1;box-shadow:0 18px 40px #a0c8dc55}
+.disco .dlg-jacket img{width:100%;height:100%;object-fit:cover}
+.disco .dlg-type{font-family:var(--font-quicksand),sans-serif;font-weight:700;color:var(--pink);font-size:13px;letter-spacing:.18em}
+.disco .dlg-title{font-size:clamp(24px,3.2vw,34px);font-weight:900;color:var(--head);line-height:1.3;margin:4px 0 2px;text-wrap:pretty}
+.disco .dlg-date{font-family:var(--font-quicksand),sans-serif;font-size:14px;color:var(--muted)}
+.disco .dlg-catch{margin-top:14px;font-weight:700;color:var(--head)}
+.disco .dlg-desc{margin-top:6px;font-size:14px}
+.disco .dlg-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:20px}
+.disco .btn-booth{
+  display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 28px;border-radius:999px;
+  color:#fff;font-weight:700;background:var(--blue);box-shadow:0 10px 24px #3d95ff4d;transition:.25s;
+}
+.disco .btn-booth:hover{transform:translateY(-2px);box-shadow:0 14px 30px #3d95ff66}
+.disco .dlg-count{font-family:var(--font-quicksand),sans-serif;font-weight:700;font-size:13px;color:#6a78d8}
+.disco .dlg-sec{margin-top:28px}
+.disco .dlg-sec h3{
+  font-family:var(--font-quicksand),sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--pink);
+  margin-bottom:8px;
+}
+.disco .dlg-sec ol{list-style:none;counter-reset:t}
+.disco .dlg-sec ol li small{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+.disco .dlg-event{margin-top:14px;padding:8px 0;font-size:14px;font-weight:700;color:var(--head);border-top:1px dashed #eadfe8;border-bottom:1px dashed #eadfe8}
+.disco .dlg-sec ol li{
+  counter-increment:t;display:grid;grid-template-columns:32px 1fr;font-size:14px;padding:9px 0;
+  border-bottom:1px dashed #e6dbe8;
+}
+.disco .dlg-sec ol li::before{content:counter(t,decimal-leading-zero);font-family:var(--font-quicksand),sans-serif;font-weight:700;font-size:12px;color:var(--blue-l);filter:saturate(2) brightness(.8);padding-top:2px}
+.disco .guests{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.disco .guests a,.disco .guests span{
+  display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:6px 14px;border-radius:999px;
+  background:var(--pink-bg);color:#c2578e;transition:.2s;
+}
+.disco .guests a:hover{background:var(--pink-l);color:#fff}
+.disco .guests a::after{content:"↗";font-size:11px;opacity:.6}
+.disco .yt{aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000}
+.disco .yt iframe{width:100%;height:100%;border:0}
+.disco .dlg-nav{display:flex;justify-content:space-between;margin-top:32px;padding-top:18px;border-top:1px solid #f1e8ef}
+.disco .dlg-nav button{font-family:var(--font-quicksand),sans-serif;font-weight:700;color:var(--muted);font-size:14px;padding:8px 6px;min-height:44px}
+.disco .dlg-nav button:hover{color:var(--pink)}
+.disco .dlg-nav button:disabled{opacity:.3;cursor:default}
+
+/* ===== 新譜：夜空版の詳細（仕様は初版のまま、色味は告知動画に合わせた紺〜青灰） ===== */
+.disco .dlg.is-night .dlg-scrim{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+.disco .dlg.is-night .dlg-card{
+  background:linear-gradient(180deg,#0b1222f2 0%,#152238f2 60%,#22334ef2 100%);color:#cfd9e6;
+  border:1px solid #ffffff26;box-shadow:0 0 0 1px #ffffff0d,0 0 120px #8fc3e044,0 30px 80px #000a;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.disco .dlg.is-night .dlg-title,.disco .dlg.is-night .dlg-catch{color:#fff}
+.disco .dlg.is-night .dlg-type{color:#a9cfe4}
+.disco .dlg.is-night .dlg-date{color:#8ea3bd}
+.disco .dlg.is-night .dlg-event{color:#e8f1f8;border-color:#ffffff26}
+.disco .dlg.is-night .dlg-sec h3{color:#a9cfe4}
+.disco .dlg.is-night .dlg-sec ol li{border-color:#ffffff1f}
+.disco .dlg.is-night .dlg-sec ol li::before{color:#bfe3f5;filter:none}
+.disco .dlg.is-night .dlg-sec ol li small{color:#8ea3bd}
+.disco .dlg.is-night .guests a,.disco .dlg.is-night .guests span{background:#ffffff14;color:#e9f0f7}
+.disco .dlg.is-night .guests a:hover{background:#fff;color:#14223a}
+.disco .dlg.is-night .dlg-x{background:#ffffff1a}
+.disco .dlg.is-night .dlg-x span{background:#fff}
+.disco .dlg.is-night .dlg-nav{border-color:#ffffff1f}
+.disco .dlg.is-night .dlg-nav button{color:#8ea3bd}
+.disco .dlg.is-night .dlg-nav button:hover{color:#fff}
+.disco .dlg.is-night .dlg-count{color:#cfe8f6}
+.disco .dlg.is-night .dlg-jacket{box-shadow:0 0 0 1px #ffffff40,0 0 60px #9fd0ec80}
+.disco .btn-booth.is-night{background:#fff;color:#14223a;box-shadow:0 0 30px #bfe3f555}
+
+/* 登場アニメ（フラッシュの直後） */
+.disco .dlg.is-reveal .dlg-card{transition:none;animation:disco-cardIn .9s cubic-bezier(.2,1,.3,1) both}
+.disco .dlg.is-reveal .dlg-jacket{animation:disco-jkIn 1.1s cubic-bezier(.2,1.3,.35,1) both}
+.disco .dlg.is-reveal .dlg-info > *{animation:disco-rise .8s ease both}
+.disco .dlg.is-reveal .dlg-info > *:nth-child(1){animation-delay:.25s}
+.disco .dlg.is-reveal .dlg-info > *:nth-child(2){animation-delay:.32s}
+.disco .dlg.is-reveal .dlg-info > *:nth-child(3){animation-delay:.39s}
+.disco .dlg.is-reveal .dlg-info > *:nth-child(4){animation-delay:.46s}
+.disco .dlg.is-reveal .dlg-info > *:nth-child(5){animation-delay:.53s}
+.disco .dlg.is-reveal .dlg-info > *:nth-child(n+6){animation-delay:.6s}
+@keyframes disco-cardIn{0%{opacity:0;transform:scale(1.04);filter:brightness(2.2) blur(6px)}100%{opacity:1;transform:none;filter:none}}
+@keyframes disco-jkIn{0%{opacity:0;transform:scale(.6) rotate(-6deg);filter:brightness(3)}60%{opacity:1;transform:scale(1.04) rotate(1deg);filter:brightness(1.3)}100%{transform:none;filter:none}}
+@keyframes disco-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ===== 夜空レイヤー ===== */
+.disco .night{
+  position:fixed;inset:0;z-index:3000;visibility:hidden;opacity:0;
+  background:
+    radial-gradient(60% 40% at 50% 112%,#6f97b4aa,#0000 70%),
+    linear-gradient(180deg,#03040a 0%,#080d1c 22%,#121e36 52%,#1e2e48 78%,#2c405c 100%);
+  transition:opacity .7s ease,visibility 0s .7s;
+}
+.disco .night.is-on{visibility:visible;opacity:1;transition:opacity .7s ease}
+.disco .night canvas{position:absolute;inset:0;width:100%;height:100%}
+.disco .night-flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,#fff 0%,var(--glint) 30%,#ffffff00 70%);opacity:0;pointer-events:none}
+.disco .night-flash.go{animation:disco-flash 1s ease-out forwards}
+@keyframes disco-flash{0%{opacity:0}14%{opacity:1}40%{opacity:.95}100%{opacity:0}}
+.disco .night-copy{
+  position:absolute;left:0;right:0;top:50%;margin-top:clamp(70px,13vmin,130px);text-align:center;
+  font-family:var(--font-quicksand),sans-serif;font-weight:500;color:#e6eef6;letter-spacing:.5em;font-size:13px;text-transform:uppercase;
+  opacity:0;
+}
+.disco .night-copy.show{animation:disco-copy 2.4s ease both}
+@keyframes disco-copy{0%{opacity:0;letter-spacing:.2em}35%{opacity:.85}75%{opacity:.85}100%{opacity:0;letter-spacing:.6em}}
+.disco .night-skip{
+  position:absolute;right:24px;bottom:24px;min-height:44px;padding:0 22px;border-radius:999px;
+  color:#ffffffb3;border:1px solid #ffffff40;font-family:var(--font-quicksand),sans-serif;font-weight:700;letter-spacing:.24em;font-size:12px;
+  opacity:0;transition:opacity .4s;
+}
+.disco .night.is-on .night-skip.show{opacity:1}
+.disco .night.is-done .night-skip{display:none}
+
+/* ===== レスポンシブ ===== */
+@media (max-width:760px){
+  .disco .works{--tile:140px;gap:28px 16px}
+  .disco .works.feature-big .work-li.is-new{grid-column:1/-1;grid-row:auto}
+  .disco .dlg{padding:0;align-items:end}
+  .disco .dlg-card{border-radius:24px 24px 0 0;padding:28px 20px 24px;max-height:92vh}
+  .disco .dlg-grid{grid-template-columns:1fr;gap:22px}
+  .disco .dlg-jacket{position:relative;width:min(300px,78%);margin:0 auto}
+  .disco .dlg-info{text-align:left}
+
+}
+@media (prefers-reduced-motion:reduce){
+  .disco *,.disco *::before,.disco *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+
+}
+
+.disco *{box-sizing:border-box}
+.disco h1,.disco h2,.disco h3,.disco p,.disco ul,.disco ol,.disco figure{margin:0;padding:0}
