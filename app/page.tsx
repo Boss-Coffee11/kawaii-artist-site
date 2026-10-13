@@ -1,198 +1,215 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { Quicksand } from "next/font/google";
 import { FadeIn } from "../components/FadeIn";
+import { NightSky } from "../components/NightSky";
+import { WORKS } from "./discography/works-data";
+import { NEWS } from "./news/news-data";
+import "./home.css";
+
+const quicksand = Quicksand({ weight: ["500", "700"], subsets: ["latin"], display: "swap", variable: "--font-quicksand" });
+
+/* =========================================================
+   トップページ
+   ・新譜や作品の情報は app/discography/works-data.ts から自動で読み込みます
+   ・お知らせは app/news/news-data.ts から自動で読み込みます
+   ・夜空ジャックは、works-data.ts の jackUntil の日時を過ぎると自動で終わります
+   ========================================================= */
 
 const profile = {
   name: "鈴咲のの official site",
-  catch:(
-  <>
-    これからも<br />
-    私らしく輝いて<br />
-    歌いたい
-  </>
-),
+  catch: (
+    <>
+      これからも<br />
+      私らしく輝いて<br />
+      歌いたい
+    </>
+  ),
   bio: "同人音楽アーティスト“鈴咲のの”の活動報告サイトです。同人音楽イベントに参加したり、Twitchでのゲーム配信など、ゆるやかに活動中。",
-  mainVisual: "/Images/nono_main.jpg", 
+  mainVisual: "/Images/nono_main.jpg",
   iconImage: "/Images/nono_icon.jpg",
 };
 
 const snsLinks = [
-  { label: "X / Twitter", href: "https://x.com/_suzukinono", color: "#000" },
-  { label: "YouTube", href: "https://www.youtube.com/@_suzukinono", color: "#FF0000" },
-  { label: "Twitch", href: "https://www.twitch.tv/suzukinono6", color: "#9146FF" },
-  { label: "BOOTH", href: "https://etoilefleur.booth.pm/", color: "#3d95ff" },
-  { label: "FANBOX", href: "https://nonochan.fanbox.cc/", color: "#fca311" },
+  { label: "X", href: "https://x.com/_suzukinono" },
+  { label: "YouTube", href: "https://www.youtube.com/@_suzukinono" },
+  { label: "Twitch", href: "https://www.twitch.tv/suzukinono6" },
+  { label: "BOOTH", href: "https://etoilefleur.booth.pm/" },
+  { label: "FANBOX", href: "https://nonochan.fanbox.cc/" },
 ];
 
-const newRelease = {
-  title: "In my Dream",
-  year: "2025",
-  jacketImage: "/Images/InMyDream.jpg",
-  text: "2025年秋M3新譜。ゲストボーカルを多数迎えて制作した、全11曲（うち新曲1曲）のフルアルバム。",
-  tag: "Album",
-  booth: "https://etoilefleur.booth.pm/items/7488504"
-};
+const workLink = (id: string) => `/discography?w=${id}`;
 
-const archiveWorks = [
-  { 
-    title: "Dreamin' Coordinate", 
-    image: "/Images/Dreamin.jpg", 
-    tag: "Album",
-    booth: "https://etoilefleur.booth.pm/items/3372514"
-  },
-  { 
-    title: "おまえら、こ～ゆ～のがスキなんだろ？", 
-    image: "/Images/Omaera.jpg", 
-    tag: "miniAlbum",
-    booth: "https://etoilefleur.booth.pm/items/4348973"
-  },
-  { 
-    title: "Baby Blue Eyes", 
-    image: "/Images/BBE.jpg", 
-    tag: "miniAlbum",
-    booth: "https://etoilefleur.booth.pm/items/4674411"
-  },
-];
+/* ---------- カウントダウン ---------- */
+function useNow(ms = 30000) {
+  const [now, setNow] = useState<number | null>(null);
+  useEffect(() => {
+    setNow(Date.now());
+    const id = setInterval(() => setNow(Date.now()), ms);
+    return () => clearInterval(id);
+  }, [ms]);
+  return now;
+}
+
+function Countdown({ releaseAt, now }: { releaseAt: string; now: number | null }) {
+  if (now === null) return <div className="nhCount" style={{ visibility: "hidden" }}><span><b>00</b><em>DAYS</em></span></div>;
+  const rel = new Date(releaseAt).getTime();
+  const diff = rel - now;
+  if (diff <= 0) {
+    const sameDay = now - rel < 864e5;
+    return <p className="nhNow">{sameDay ? "本日頒布！" : "NOW ON SALE"}</p>;
+  }
+  const d = Math.floor(diff / 864e5), h = Math.floor((diff % 864e5) / 36e5), m = Math.floor((diff % 36e5) / 6e4);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return (
+    <div className="nhCount" aria-label={`リリースまであと${d}日${h}時間${m}分`}>
+      <span><b>{pad(d)}</b><em>DAYS</em></span>
+      <span><b>{pad(h)}</b><em>HRS</em></span>
+      <span><b>{pad(m)}</b><em>MIN</em></span>
+    </div>
+  );
+}
+
+/* ---------- 夜空ジャック（告知期間だけ） ---------- */
+function NightHero({ w, now }: { w: any; now: number | null }) {
+  return (
+    <section className="nightHero">
+      <NightSky />
+      <div className="nhHorizon" aria-hidden="true" />
+      <div className="nhInner">
+        <Link href={workLink(w.id)} className="nhJacket" aria-label={`${w.title} の詳細を見る`}>
+          <img src={w.img} alt={`${w.title} ジャケット`} />
+        </Link>
+        <div className="nhText">
+          <p className="nhEyebrow">NEW {w.type.toUpperCase()} ・ {w.date}</p>
+          <h1 className="nhTitle">{w.title}</h1>
+          {w.catch && <p className="nhCatch">{w.catch}</p>}
+          {(w.event || w.price) && <p className="nhEvent">{[w.event, w.price].filter(Boolean).join("　/　")}</p>}
+          {w.releaseAt && <Countdown releaseAt={w.releaseAt} now={now} />}
+          <div className="nhButtons">
+            <Link href={workLink(w.id)} className="nhBtn primary">詳しく見る</Link>
+            {w.youtube && (
+              <a href={`https://www.youtube.com/watch?v=${w.youtube}`} target="_blank" rel="noreferrer" className="nhBtn ghost">クロスフェードを聴く ↗</a>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- いつものヒーロー（夜空ジャックが終わったら） ---------- */
+function DayHero() {
+  return (
+    <section id="top" className="hero section">
+      <div className="heroText reveal">
+        <p className="eyebrow">Official Website</p>
+        <h1>{profile.catch}</h1>
+        <p className="lead">{profile.bio}</p>
+        <div className="heroButtons">
+          <Link className="button primary puni" href="/discography">作品を見る</Link>
+          <Link className="button ghost puni" href="/news">お知らせ</Link>
+        </div>
+      </div>
+      <div className="heroVisual reveal delay1">
+        <div className="portraitCard puni">
+          <div className="portraitInner" style={{
+            backgroundImage: `url(${profile.mainVisual})`, backgroundSize: "cover", backgroundPosition: "center",
+            backgroundColor: "#ffd1dc", boxShadow: "0 0 20px rgba(255,255,255,0.8), inset 0 0 15px rgba(255,255,255,0.5)",
+            border: "5px solid #fff",
+          }}>
+            <span className="ribbon" style={{ fontSize: "1.5rem", filter: "drop-shadow(0 0 5px white)" }}>♡</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
-  return (
-    <div>
-      {/* ヒーローセクション */}
-      <section id="top" className="hero section">
-        <div className="heroText reveal">
-          <p className="eyebrow">Official Website</p>
-          <h1>{profile.catch}</h1>
-          <p className="lead">{profile.bio}</p>
-          <div className="heroButtons">
-            <a className="button primary puni" href="/discography">作品を見る</a>
-            <a className="button ghost puni" href="https://www.twitch.tv/suzukinono6" target="_blank" rel="noreferrer">Twitch配信を見る 🎮</a>
-          </div>
-        </div>
+  const now = useNow();
+  const featured = WORKS.find((w) => w.isNew);
+  // ビルド時は夜空で表示し、ブラウザで日時を確かめて期間外ならいつものトップに切り替えます
+  const jack = !!featured?.jackUntil && (now === null || now < new Date(featured.jackUntil).getTime());
+  const latest = WORKS.slice(0, 4);
+  const news = NEWS.slice(0, 3);
 
-        <div className="heroVisual reveal delay1">
-          <div className="portraitCard puni">
-            <div className="portraitInner" style={{
-             backgroundImage: `url(${profile.mainVisual})`,
-             backgroundSize: 'cover',
-             backgroundPosition: 'center',
-             backgroundColor: '#ffd1dc',
-             boxShadow: '0 0 20px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.5)', // 内外に光を追加
-             border: '5px solid #fff' // 白枠で縁取りしてイラストを強調
-            }}>
-              <span className="ribbon" style={{ fontSize: '1.5rem', filter: 'drop-shadow(0 0 5px white)' }}>♡</span>
-            </div>
-            <p>main visual</p>
-          </div>
+  return (
+    <div className={`home ${quicksand.variable}`}>
+      {jack ? <NightHero w={featured} now={now} /> : <DayHero />}
+
+      {/* お知らせ */}
+      <section className="section homeNews">
+        <div className="sectionTitle">
+          <p>Information</p>
+          <h2>News</h2>
         </div>
+        <ul className="homeNewsList">
+          {news.map((n, i) => (
+            <li key={i}>
+              {n.link ? (
+                n.link.startsWith("http")
+                  ? <a href={n.link} target="_blank" rel="noreferrer"><time>{n.date}</time><span>{n.title}</span></a>
+                  : <Link href={n.link}><time>{n.date}</time><span>{n.title}</span></Link>
+              ) : (
+                <div><time>{n.date}</time><span>{n.title}</span></div>
+              )}
+            </li>
+          ))}
+        </ul>
+        <div className="homeMore"><Link href="/news" className="button ghost">お知らせ一覧</Link></div>
+      </section>
+
+      {/* 最新の作品4つ */}
+      <section className="section homeWorks">
+        <div className="sectionTitle">
+          <p>Works</p>
+          <h2>Discography</h2>
+        </div>
+        <div className="homeWorksGrid">
+          {latest.map((w, i) => (
+            <FadeIn key={w.id} delay={`${i * 0.12}s`}>
+              <Link href={workLink(w.id)} className={`homeWork${w.isNew ? " isNew" : ""}`}>
+                <span className="homeWorkJk">
+                  <img src={w.img} alt={`${w.title} ジャケット`} loading="lazy" />
+                  {w.isNew && <span className="homeWorkNew">NEW</span>}
+                </span>
+                <span className="homeWorkType">{w.type}</span>
+                <span className="homeWorkTitle">{w.title}</span>
+              </Link>
+            </FadeIn>
+          ))}
+        </div>
+        <div className="homeMore"><Link href="/discography" className="button ghost">すべての作品を見る</Link></div>
       </section>
 
       {/* プロフィール */}
-      <section id="profile" className="section profileSection reveal delay2">
+      <section id="profile" className="section profileSection">
         <div className="sectionTitle">
           <p>About</p>
           <h2>Profile</h2>
         </div>
         <div className="profileCard glassCard">
           <div className="miniIcon" style={{
-            backgroundImage: `url(${profile.iconImage})`,
-            backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#ffd1dc'
+            backgroundImage: `url(${profile.iconImage})`, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#ffd1dc",
           }} />
           <div>
             <h3>鈴咲のの（すずき のの）</h3>
-            <p>同人アイドルアーティスト。<br />
-              ドジは多いけど優しく見守ってね！</p>
-            <a href="/profile" style={{ color: '#ff82b2', fontSize: '0.8rem', textDecoration: 'none', marginTop: '10px', display: 'inline-block' }}>詳細プロフィール・活動歴はこちら →</a>
+            <p>同人アイドルアーティスト。<br />ドジは多いけど優しく見守ってね！</p>
+            <Link href="/profile" className="homeProfileLink">詳細プロフィール・活動歴はこちら →</Link>
           </div>
         </div>
       </section>
 
-      {/* 作品紹介 */}
-      <section id="discography" className="section reveal">
-        <div className="sectionTitle">
-          <p>Works</p>
-          <h2>Discography</h2>
-        </div>
-        
-        {/* 新譜ピックアップ */}
-        <section className="newReleaseSection">
-        <span className="newBadge">PICK UP NEW RELEASE</span>
-        <div className="workCard puni" style={{ 
-          display: 'flex', gap: '30px', flexWrap: 'wrap', 
-          backgroundColor: 'rgba(255,255,255,0.4)', padding: '25px', borderRadius: '30px',
-          marginBottom: '30px', backdropFilter: 'blur(10px)'
-        }}>
-          <div style={{ 
-            width: '200px', aspectRatio: '1/1', borderRadius: '20px',
-            backgroundImage: `url(${newRelease.jacketImage})`, backgroundSize: 'cover',
-            backgroundColor: '#ddd'
-          }} />
-          <div style={{ flex: 1, minWidth: '280px' }}>
-            <span style={{ fontSize: '0.75rem', color: '#ff82b2', fontWeight: 'bold' }}>NEW RELEASE / {newRelease.tag}</span>
-            <h3 style={{ margin: '10px 0', fontSize: '1.5rem' }}>{newRelease.title}</h3>
-            <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: '20px' }}>{newRelease.text}</p>
-            <a href={newRelease.booth} target="_blank" rel="noreferrer" style={{ 
-              color: '#3d95ff', textDecoration: 'none', fontWeight: 'bold', border: '1px solid #3d95ff',
-              padding: '8px 20px', borderRadius: '15px'
-            }}>BOOTHでチェック 🛒</a>
-          </div>
-        </div>
-        </section>
-
-        {/* アーカイブグリッド */}
-        <section>
-          <div className="sectionTitle">
-            <p>Archive</p>
-             <h3>過去作はこちら</h3>
-         </div>
-        <div className="cardGrid">
-          {archiveWorks.map((item, index) => (
-            <FadeIn key={item.title} delay={`${index * 0.15}s`}>
-              <a 
-                href={item.booth}
-                target="_blank" 
-                rel="noreferrer" 
-                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
-              >
-
-                <article className="workCard archiveCard puni" style={{ cursor: 'pointer' }}>
-                  <div 
-                    className="jacket puni"
-                    style={{ 
-                      backgroundImage: `url(${item.image})`, 
-                      backgroundSize: 'cover',
-                    }} 
-                  >
-                    <span>{item.tag}</span>
-                  </div>
-                  <div className="cardBody">
-                    <h3>{item.title}</h3>
-                    <p style={{ fontSize: '0.8rem', color: '#3d95ff', marginTop: '5px' }}>BOOTHで見る ↗</p>
-                  </div>
-                </article>
-              </a>
-            </FadeIn>
+      {/* SNS（1行にまとめたもの） */}
+      <section className="section homeSns" aria-label="SNS & Links">
+        <p className="homeSnsLabel">Follow &amp; Links</p>
+        <nav className="homeSnsRow">
+          {snsLinks.map((l) => (
+            <a key={l.label} href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
           ))}
-        </div>
-        </section>
-
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
-           <a href="/discography" className="button ghost">すべての作品リストを見る</a>
-        </div>
-      </section>
-
-      {/* SNS */}
-      <section id="sns" className="section snsSection reveal">
-        <div className="sectionTitle">
-          <p>Follow / Stream</p>
-          <h2>SNS & Links</h2>
-        </div>
-        <div className="snsLinks">
-          {snsLinks.map((link) => (
-            <a key={link.label} href={link.href} target="_blank" rel="noreferrer" style={{ borderLeft: `4px solid ${link.color}` }}>
-              {link.label}<span>↗</span>
-            </a>
-          ))}
-        </div>
+        </nav>
       </section>
 
       <footer className="footer">

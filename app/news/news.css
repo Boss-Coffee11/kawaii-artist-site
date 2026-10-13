@@ -1,0 +1,15 @@
+/* News ページ専用。.newsPage の中だけに効きます */
+.newsPage{width:min(860px,calc(100% - 32px));margin:0 auto;padding:8px 0 80px;color:#555568}
+.newsPage .sectionTitle h2{font-family:var(--font-quicksand),sans-serif;font-weight:700;letter-spacing:.02em}
+.newsPage .sectionTitle p{font-family:var(--font-quicksand),sans-serif;letter-spacing:.3em}
+.newsList{list-style:none;margin:0;padding:0;border-top:1px solid #efe6ee}
+.newsItem{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:24px 4px;border-bottom:1px solid #efe6ee}
+.newsItem time{font-family:var(--font-quicksand),sans-serif;font-weight:700;color:#3d95ff;font-size:15px;letter-spacing:.06em;padding-top:2px}
+.newsItem h3{margin:0;font-size:17px;color:#4f5064;line-height:1.6}
+.newsItem p{margin:6px 0 0;font-size:14px;line-height:1.9;color:#747489}
+.newsItem a{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:#ef86b9}
+.newsItem a:hover{text-decoration:underline}
+.newsEmpty{text-align:center;color:#8b8ba0;padding:40px 0}
+@media (max-width:640px){
+  .newsItem{grid-template-columns:1fr;gap:4px;padding:20px 2px}
+}

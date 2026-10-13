@@ -1,0 +1,98 @@
+/* =========================================================
+   トップページ専用の見た目（.home の中だけに効きます）
+   ========================================================= */
+.home .sectionTitle h2{font-family:var(--font-quicksand),sans-serif;font-weight:700;letter-spacing:.02em}
+.home .sectionTitle p{font-family:var(--font-quicksand),sans-serif;letter-spacing:.3em}
+.home .section{padding:56px 0}
+.homeMore{text-align:center;margin-top:32px}
+
+/* ---------- 夜空ジャック ---------- */
+.nightHero{
+  position:relative;overflow:hidden;color:#cfd9e6;
+  margin-top:-140px;padding:180px 0 96px;min-height:100vh;display:grid;align-items:center;
+  background:
+    radial-gradient(60% 40% at 50% 112%,#6f97b4aa,#0000 70%),
+    linear-gradient(180deg,#03040a 0%,#080d1c 22%,#121e36 52%,#1e2e48 78%,#2c405c 100%);
+}
+.nightHero::after{ /* 下の明るいページへふんわりつなぐ */
+  content:"";position:absolute;left:0;right:0;bottom:0;height:90px;pointer-events:none;
+  background:linear-gradient(180deg,#2c405c00,#fff8fb);
+}
+.nightSkyCanvas{position:absolute;inset:0;width:100%;height:100%}
+.nhHorizon{position:absolute;left:0;right:0;bottom:120px;height:1px;opacity:.7;
+  background:linear-gradient(90deg,#dceeff00,#ebf6ff,#dceeff00)}
+.nhInner{
+  position:relative;z-index:1;width:min(1120px,calc(100% - 32px));margin:0 auto;
+  display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:56px;align-items:center;
+}
+.nhJacket{display:block;border-radius:22px;overflow:hidden;aspect-ratio:1;
+  box-shadow:0 0 0 1px #ffffff40,0 0 80px #9fd0ec70,0 30px 60px #000a;
+  animation:nhFloat 6s ease-in-out infinite;transition:transform .4s}
+.nhJacket:hover{transform:scale(1.02)}
+.nhJacket img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes nhFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.nhEyebrow{font-family:var(--font-quicksand),sans-serif;font-weight:700;letter-spacing:.28em;font-size:13px;color:#a9cfe4;margin:0}
+.nhTitle{font-family:var(--font-quicksand),sans-serif;font-weight:700;color:#fff;
+  font-size:clamp(52px,8vw,96px);letter-spacing:.01em;line-height:1;margin:10px 0 14px;
+  text-shadow:0 0 30px #9fd0ec66}
+.nhCatch{font-size:16px;font-weight:700;color:#e8f1f8;margin:0}
+.nhEvent{display:inline-block;margin:14px 0 0;padding:8px 0;font-size:14px;font-weight:700;color:#e8f1f8;
+  border-top:1px dashed #ffffff33;border-bottom:1px dashed #ffffff33}
+.nhCount{display:flex;gap:10px;margin-top:22px}
+.nhCount span{min-width:74px;text-align:center;padding:10px 12px;border-radius:16px;
+  background:#ffffff12;border:1px solid #ffffff26;backdrop-filter:blur(6px)}
+.nhCount b{display:block;font-family:var(--font-quicksand),sans-serif;font-size:32px;color:#fff;line-height:1.1}
+.nhCount em{display:block;font-style:normal;font-family:var(--font-quicksand),sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;color:#a9cfe4;margin-top:2px}
+.nhNow{margin:22px 0 0;font-size:22px;font-weight:900;color:#fff;text-shadow:0 0 20px #bfe3f5}
+.nhButtons{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.nhBtn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 28px;border-radius:999px;font-weight:700;transition:.25s}
+.nhBtn.primary{background:#fff;color:#14223a;box-shadow:0 0 30px #bfe3f566}
+.nhBtn.primary:hover{transform:translateY(-2px);box-shadow:0 0 40px #bfe3f5aa}
+.nhBtn.ghost{color:#fff;border:1px solid #ffffff55}
+.nhBtn.ghost:hover{background:#ffffff1a}
+
+/* ---------- News（3件） ---------- */
+.homeNewsList{list-style:none;margin:0 auto;padding:0;max-width:840px;border-top:1px solid #efe6ee}
+.homeNewsList li > *{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:18px 8px;border-bottom:1px solid #efe6ee;transition:background .2s}
+.homeNewsList a:hover{background:#ffffff99}
+.homeNewsList time{font-family:var(--font-quicksand),sans-serif;font-weight:700;color:#3d95ff;letter-spacing:.06em}
+.homeNewsList span{color:#4f5064;font-weight:700}
+.homeNewsList a:hover span{color:#ef86b9}
+
+/* ---------- 最新の作品4つ ---------- */
+.homeWorksGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.homeWork{display:block;color:inherit}
+.homeWorkJk{position:relative;display:block;aspect-ratio:1;border-radius:18px;overflow:hidden;background:#f3eaf2;
+  box-shadow:0 12px 30px #a0c8dc33;transition:transform .45s cubic-bezier(.2,1.3,.4,1),box-shadow .35s}
+.homeWorkJk img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.homeWork:hover .homeWorkJk{transform:translateY(-6px);box-shadow:0 22px 44px #ffa7cd47}
+.homeWork:hover .homeWorkJk img{transform:scale(1.04)}
+.homeWork.isNew .homeWorkJk{box-shadow:0 0 0 3px #fff,0 0 0 6px #b9d3e6,0 20px 44px #1e2e4855}
+.homeWorkNew{position:absolute;left:10px;bottom:10px;background:#fff;color:#14223a;border-radius:999px;padding:2px 10px;
+  font-family:var(--font-quicksand),sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em}
+.homeWorkType{display:block;margin-top:12px;font-family:var(--font-quicksand),sans-serif;font-weight:700;font-size:11px;letter-spacing:.16em;color:#ef86b9}
+.homeWorkTitle{display:block;font-weight:700;color:#4f5064;line-height:1.5;margin-top:2px}
+
+.homeProfileLink{color:#ff82b2;font-size:.85rem;margin-top:10px;display:inline-block}
+
+/* ---------- SNS（1行） ---------- */
+.home .homeSns{text-align:center;padding:24px 0 8px}
+.homeSnsLabel{font-family:var(--font-quicksand),sans-serif;font-weight:700;letter-spacing:.3em;font-size:12px;color:#ef86b9;text-transform:uppercase;margin:0 0 14px}
+.homeSnsRow{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.homeSnsRow a{font-family:var(--font-quicksand),sans-serif;font-weight:700;font-size:14px;color:#4f5064;
+  padding:10px 20px;border-radius:999px;background:#ffffffb8;border:1px solid #ffffffb8;box-shadow:0 8px 22px #a0c8dc22;transition:.25s}
+.homeSnsRow a:hover{color:#ef86b9;transform:translateY(-3px)}
+
+@media (min-width:640px){ .nightHero{margin-top:-120px} }
+@media (max-width:880px){
+  .nhInner{grid-template-columns:1fr;gap:32px;text-align:center}
+  .nhJacket{width:min(320px,80%);margin:0 auto}
+  .nhCount,.nhButtons{justify-content:center}
+  .homeWorksGrid{grid-template-columns:repeat(2,1fr);gap:20px}
+}
+@media (max-width:560px){
+  .nightHero{padding:170px 0 80px}
+  .nhCount span{min-width:64px}
+  .homeNewsList li > *{grid-template-columns:1fr;gap:2px}
+}
+@media (prefers-reduced-motion:reduce){ .nhJacket{animation:none} }

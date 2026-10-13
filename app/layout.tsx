@@ -22,30 +22,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body style={{ margin: 0, overflowX: 'hidden' }}>
         <ClickSparkle />
         
-        {/* フローティングボタンエリア */}
-        <div style={{
-          position: 'fixed', bottom: '20px', right: '20px',
-          display: 'flex', flexDirection: 'column', gap: '12px', zIndex: 1000
-        }}>
-          <a href="https://www.twitch.tv/suzukinono6" target="_blank" rel="noreferrer" 
-             style={{
-               width: '56px', height: '56px', borderRadius: '50%', backgroundColor: '#9146FF',
-               display: 'flex', alignItems: 'center', justifyContent: 'center',
-               color: 'white', fontSize: '2.0rem', boxShadow: '0 4px 15px rgba(145, 70, 255, 0.4)',
-               transition: 'transform 0.2s', paddingBottom: '6px', lineHeight: 1
-             }} className="fab-button">
-            🎮
-          </a>
-          <a href="https://etoilefleur.booth.pm/" target="_blank" rel="noreferrer"
-             style={{
-               width: '56px', height: '56px', borderRadius: '50%', backgroundColor: '#3d95ff',
-               display: 'grid', placeItems: 'center', color: 'white', fontSize: '2.0rem',
-               boxShadow: '0 4px 15px rgba(61, 149, 255, 0.4)', transition: 'transform 0.2s'
-             }} className="fab-button">
-            🛒
-          </a>
-        </div>
-
         <header style={{
           position: 'fixed', top: '10px', left: '0', right: '0',
           display: 'flex', justifyContent: 'center', zIndex: 100
@@ -60,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               鈴咲のの official site
             </Link>
             <nav style={{ display: 'flex', gap: '20px', fontSize: '0.9rem' }}>
+              <Link href="/news" style={{ color: '#888', textDecoration: 'none' }}>News</Link>
               <Link href="/profile" style={{ color: '#888', textDecoration: 'none' }}>Profile</Link>
               <Link href="/discography" style={{ color: '#888', textDecoration: 'none' }}>Discography</Link>
               <Link href="/goods" style={{ color: '#888', textDecoration: 'none' }}>Goods</Link>
