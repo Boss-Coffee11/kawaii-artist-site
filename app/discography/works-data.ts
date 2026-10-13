@@ -20,7 +20,8 @@ export const WORKS: any[] = [
     event: "第二展示場 え-18a",           // 頒布スペース
     price: "イベント価格 ¥1,000",
     booth: "",                           // BOOTHページができたらURLを入れる
-    youtube: "",
+    youtube: "nN1wGNmDgbU",             // クロスフェード動画
+    jackUntil: "2026-11-08T00:00:00+09:00", // この日時まで、トップページが夜空になります（消すと夜空ジャックなし）
     tracks: [
       { t: "惺解", c: "music, lyric ／ 瀬名水紀" },
       { t: "星映", c: "music, lyric ／ aon" },

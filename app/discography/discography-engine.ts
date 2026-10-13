@@ -326,6 +326,14 @@ export function initDiscography(root, WORKS){
   list.classList.add("feature-big");
   render();
 
+  // トップページなどから /discography?w=作品ID で来たら、その作品をすぐ開く
+  const wanted = new URLSearchParams(location.search).get("w");
+  if(wanted){
+    const w = WORKS.find(x => x.id === wanted);
+    if(w) later(() => open(w), 500);
+    history.replaceState(null, "", location.pathname);
+  }
+
   // ページを離れるときの後片付け
   return () => {
     ac.abort();
