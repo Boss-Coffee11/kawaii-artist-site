@@ -23,6 +23,7 @@ function Card({ g, dark, onZoom }: { g: Goods; dark?: boolean; onZoom: (g: Goods
         <h3>{g.name}</h3>
         {g.note && <p className="gNote">{g.note}</p>}
         <p className="gPrice">{g.price}</p>
+        {g.sub && <p className="gSub">{g.sub}</p>}
         {g.booth && <a className="gBooth" href={g.booth} target="_blank" rel="noreferrer">BOOTHで見る ↗</a>}
       </div>
     </article>
@@ -97,6 +98,7 @@ export default function GoodsPage() {
         <div className="gDayHead">
           <p className="gDayK">ALWAYS ON BOOTH</p>
           <h3>いつでも買えるもの</h3>
+          <p className="gDayLead">BOOTH で通販中の作品です。価格は BOOTH での販売価格（税込）です</p>
         </div>
 
         <div className="gTabs" role="tablist" aria-label="種類で切り替え">
@@ -110,14 +112,12 @@ export default function GoodsPage() {
 
         {tab === "cd" ? (
           <div className="gPanel" key="cd">
-            {EVENT.show && EVENT.priceNote && <p className="gPriceNote light">{EVENT.priceNote}</p>}
             <div className="gGrid cds">
               {OLD_CDS.map((g) => <Card key={g.name} g={g} onZoom={setZoom} />)}
             </div>
           </div>
         ) : (
           <div className="gPanel" key="goods">
-            <p className="gPanelNote">BOOTH でいつでもお買い求めいただけます（価格は BOOTH での販売価格です）</p>
             <div className="gShopList">
               {SHOP_GOODS.map((g) => (
                 <article key={g.name} className="gFeature">

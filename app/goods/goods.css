@@ -56,6 +56,7 @@
 .gCard.dark .gNote{color:#9fb2c8}
 .gPrice{margin:6px 0 0;font-family:var(--font-quicksand),sans-serif;font-weight:700;font-size:17px;color:#3d95ff}
 .gCard.dark .gPrice,.gSet .gPrice{color:#e3c99a}
+.gSub{margin:0;font-family:var(--font-quicksand),sans-serif;font-weight:700;font-size:12.5px;color:#8b8ba0}
 .gPrice.big{font-size:26px;margin:2px 0 0}
 .gBooth{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:#3d95ff}
 
@@ -71,6 +72,7 @@
 .gDayHead{text-align:center}
 .gDayK{margin:0;font-family:var(--font-quicksand),sans-serif;font-weight:700;letter-spacing:.3em;font-size:12px;color:#ef86b9}
 .gDayHead h3{margin:4px 0 0;font-size:24px;font-weight:900;color:#4f5064}
+.gDayLead{margin:6px 0 0;font-size:13px;color:#8b8ba0}
 
 /* タブ */
 .gTabs{display:flex;justify-content:center;gap:6px;width:fit-content;margin:22px auto 30px;padding:6px;border-radius:999px;
