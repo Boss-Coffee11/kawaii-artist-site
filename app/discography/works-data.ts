@@ -19,7 +19,7 @@ export const WORKS: any[] = [
     desc: "",
     event: "第二展示場 え-18a",           // 頒布スペース
     price: "イベント価格 ¥1,000",
-    booth: "",                           // BOOTHページができたらURLを入れる
+    booth: "https://etoilefleur.booth.pm/items/8970667",
     youtube: "nN1wGNmDgbU",             // クロスフェード動画
     jackUntil: "2026-11-08T00:00:00+09:00", // この日時まで、トップページが夜空になります（消すと夜空ジャックなし）
     tracks: [
@@ -61,7 +61,7 @@ export const WORKS: any[] = [
     booth: "https://etoilefleur.booth.pm/items/6291877", youtube: "", tracks: [], guests: []
   },
   {
-    id: "ownmirage", title: "Ownmirage", type: "Album", date: "",
+    id: "ownmirage", title: "Ownmirage", type: "miniAlbum", date: "",
     img: "/Images/Ownmirage.jpg", desc: "",
     booth: "https://etoilefleur.booth.pm/items/6179402", youtube: "", tracks: [], guests: []
   },
@@ -87,7 +87,7 @@ export const WORKS: any[] = [
     booth: "https://etoilefleur.booth.pm/items/4348973", youtube: "", tracks: [], guests: []
   },
   {
-    id: "dreamin", title: "Dreamin' Coordinate", type: "Album", date: "",
+    id: "dreamin", title: "Dreamin' Coordinate", type: "miniAlbum", date: "",
     img: "/Images/Dreamin.jpg", desc: "",
     booth: "https://etoilefleur.booth.pm/items/3372514", youtube: "", tracks: [], guests: []
   }
