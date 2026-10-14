@@ -28,7 +28,11 @@ export const WORKS: any[] = [
       { t: "惺解 (instrumental)", c: "music ／ 瀬名水紀" },
       { t: "星映 (instrumental)", c: "music ／ aon" }
     ],
-    guests: []
+    guestsLabel: "Music & Lyrics",       // 下のリストの見出し（書かなければ「Guest Vocal」）
+    guests: [
+      { name: "瀬名水紀", x: "https://x.com/sena_soar" },
+      { name: "aon", x: "https://x.com/nayutaon" }
+    ]
   },
   {
     id: "inmydream",

@@ -70,7 +70,7 @@ export default function DiscographyPage() {
                 <ol id="dTracks"></ol>
               </section>
               <section className="dlg-sec" id="dGuestSec">
-                <h3>Guest Vocal</h3>
+                <h3 id="dGuestLabel">Guest Vocal</h3>
                 <ul className="guests" id="dGuests"></ul>
               </section>
               <section className="dlg-sec" id="dYtSec">

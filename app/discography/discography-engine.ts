@@ -98,6 +98,7 @@ export function initDiscography(root, WORKS){
     const ev = [w.event, w.price].filter(Boolean).join("　/　");
     $("#dEvent").textContent = ev; $("#dEvent").hidden = !ev;
     $("#dGuestSec").hidden = !(w.guests && w.guests.length);
+    $("#dGuestLabel").textContent = w.guestsLabel || "Guest Vocal";
     $("#dGuests").innerHTML = (w.guests||[]).map(g=> g.x
       ? `<li><a href="${g.x}" target="_blank" rel="noopener">${g.name}</a></li>`
       : `<li><span>${g.name}</span></li>`).join("");
